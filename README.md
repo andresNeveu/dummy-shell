@@ -9,7 +9,7 @@ Basado en un recurso propisiado por el profesor [John Sanabria](john.sanabria@co
 ## Autores 
 _Forman parte de nuetro equipo:_
 * **Víctor Sapuyes** - [victor262108](https://github.com/victor262108) - 201925711 
-* **Kevin Marín** - [kvinstuard](https://github.com/kvinstuard) - 20
+* **Kevin Marín** - [kvinstuard](https://github.com/kvinstuard) - 201927020
 
 
 ## Como compilar
