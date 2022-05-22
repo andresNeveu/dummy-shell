@@ -40,12 +40,10 @@ int main(int argc, char *argv[])
     vector_cadenas = de_cadena_a_vector(cadena);
     if (strcmp("salir", vector_cadenas[0]) == 0)
     {
-      int i = 0;
-      while (i < pidsIndex)
+      for (int i = 0; i < pidsIndex; i++)
       {
         kill(pids[i], SIGSEGV);
-        i++;
-      }
+      };
       break;
     }
     len = length(vector_cadenas);
@@ -61,19 +59,16 @@ int main(int argc, char *argv[])
       if (strcmp("tareas", vector_cadenas[0]) == 0)
       {
         printf("procesos en background:\n");
-        int i = 0;
-        while (i < pidsIndex)
+        for (int i = 0; i < pidsIndex; i++)
         {
           printf("%d\n", (int)pids[i]);
-          i++;
-        }
+        };
         kill(getpid(), SIGSEGV);
       }
       else
       {
         if (strcmp("detener", vector_cadenas[0]) == 0)
         {
-          printf("%s se detuvo\n", vector_cadenas[1]);
           vector_cadenas[0] = "kill";
         }
         execvp(vector_cadenas[0], vector_cadenas);
@@ -86,10 +81,25 @@ int main(int argc, char *argv[])
         pids[pidsIndex] = pid;
         printf("%d\n", (int)pids[pidsIndex]);
         pidsIndex++;
-        printf("ando en back ;-)\n");
       }
       else
       {
+        if (strcmp("detener", vector_cadenas[0]) == 0)
+        {
+          for (int i = 0; i < pidsIndex; i++)
+          {
+            if (pids[i] == atoi(vector_cadenas[1]))
+            {
+              for (int j = i; j < pidsIndex; j++)
+              {
+                pids[j] = pids[j + 1];
+              }
+              pidsIndex--;
+              printf("%s se detuvo\n", vector_cadenas[1]);
+              break;
+            }
+          }
+        }
         wait(NULL);
       }
     }
